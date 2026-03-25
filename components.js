@@ -7,12 +7,12 @@
 (function () {
   // Detect if this is the main page (index.html or directory root)
   var path = window.location.pathname;
-  var isMainPage = path.endsWith('/') || path.endsWith('/VtntGames');
+  var isMainPage = path.endsWith('/') || path.endsWith('/index.html');
 
   // Build link helper: on main page use anchor only, on sub-pages prepend "index.html"
   function link(hash) {
-    if (!hash) return isMainPage ? '#' : 'VtntGames';
-    return isMainPage ? '#' + hash : 'VtntGames#' + hash;
+    if (!hash) return isMainPage ? '#' : 'index.html';
+    return isMainPage ? '#' + hash : 'index.html#' + hash;
   }
 
   // ── NAVBAR ──
