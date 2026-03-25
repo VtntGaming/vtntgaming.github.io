@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="osu! RoVer - A rhythm game experience on Roblox" />
+  <title>osu! RoVer - VtntGaming</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .game-detail-hero {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(6, 182, 212, 0.1)),
+                  url('https://tr.rbxcdn.com/180DAY-72bf4aa9d47f28da53976b21ba6f6298/768/432/Image/Webp/noFilter') center/cover;
+      position: relative;
+      overflow: hidden;
+    }
+    .game-detail-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 15, 26, 0.75);
+      z-index: 0;
+    }
+    .game-detail-content { position: relative; z-index: 1; max-width: 720px; }
+    .game-detail-content h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; color: #fff; }
+    .game-detail-content .game-tag { margin-bottom: 1.5rem; font-size: 0.85rem; display: inline-block; }
+    .game-detail-rating { font-size: 1.3rem; letter-spacing: 2px; color: #f59e0b; margin-bottom: 1.5rem; }
+    
+    .detail-header-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+    
+    .detail-section { margin-bottom: 3rem; }
+    .detail-section h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+    .detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .detail-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--primary-light); margin-bottom: 0.6rem; }
+    .detail-card p { color: var(--text-muted); line-height: 1.7; }
+    
+    .detail-spotlight {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.1));
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .detail-spotlight h3 { color: var(--primary-light); font-size: 1.3rem; margin-bottom: 1rem; }
+    
+    .gameplay-features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .feature-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .feature-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .feature-item .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .feature-item p { font-size: 0.85rem; color: var(--text-muted); }
+    
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .stat-box .number { font-size: 2rem; font-weight: 800; color: var(--primary-light); margin-bottom: 0.3rem; }
+    .stat-box .label { color: var(--text-muted); font-size: 0.9rem; }
+    
+    .community-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .community-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1.5rem; }
+    .community-item { display: flex; gap: 1rem; }
+    .community-item .icon { font-size: 2rem; flex-shrink: 0; }
+    .community-item h4 { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .community-item p { color: var(--text-muted); font-size: 0.9rem; }
+    
+    .cta-section {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(6, 182, 212, 0.1));
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-muted); margin-bottom: 1.5rem; max-width: 550px; margin-left: auto; margin-right: auto; }
+    
+    .breadcrumb {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .breadcrumb a { color: var(--primary-light); text-decoration: underline; cursor: pointer; }
+    .breadcrumb a:hover { color: #fff; }
+    
+    @media (max-width: 768px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .gameplay-features { grid-template-columns: repeat(2, 1fr); }
+      .stats-row { grid-template-columns: 1fr; }
+      .community-grid { grid-template-columns: 1fr; }
+      .detail-header-actions { flex-direction: column; align-items: center; }
+      .game-detail-hero { min-height: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Vtnt<span>Gaming</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#games">Games</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="container" style="padding-top: calc(var(--nav-height) + 1rem);">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="index.html#games">Games</a>
+      <span>/</span>
+      <span>osu! RoVer</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="game-detail-hero">
+    <div class="game-detail-content">
+      <span class="game-tag">ROBLOX RHYTHM GAME</span>
+      <h1>osu! RoVer</h1>
+      <div class="game-detail-rating">★★★★★</div>
+      <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+        Experience the ultimate rhythm game on Roblox. Click, follow, and spin to the beat with players from around the world!
+      </p>
+      <div class="detail-header-actions">
+        <a href="https://www.roblox.com/games/7216838953/osu-RoVer" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play Now on Roblox</a>
+        <button class="btn btn-outline" onclick="document.getElementById('about-game').scrollIntoView({behavior: 'smooth'});">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="section" style="background: var(--bg);">
+    <div class="container">
+
+      <!-- ABOUT GAME -->
+      <div id="about-game" class="detail-section">
+        <h2>About the Game</h2>
+        <div class="detail-spotlight">
+          <h3>🎵 What is osu! RoVer?</h3>
+          <p>
+            osu! RoVer is a Roblox adaptation of the popular rhythm game osu!, where players must click circles, follow sliders, and spin spinners in sync with music. 
+            Whether you're a rhythm game veteran or just starting out, this game offers fun challenges for all skill levels.
+          </p>
+        </div>
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3>🎯 How to Play</h3>
+            <p>
+              Click on circles as they appear, slide along the colored lines following the beat, and spin the spinner icons as fast as possible. 
+              Timing is everything — hit notes perfectly for maximum points!
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>🏆 Difficulty Levels</h3>
+            <p>
+              Choose from multiple difficulty levels ranging from Easy to Extreme. Each song has unique patterns designed to test your reflexes and rhythm sense 
+              at different skill tiers.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>🌐 Community Features</h3>
+            <p>
+              Play with friends, compete on global leaderboards, and join tournaments. Chat with other players and discover new music collaboratively 
+              with the vibrant community.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>🎶 Extensive Song Library</h3>
+            <p>
+              Access a constantly growing collection of songs across multiple genres including pop, rock, electronic, and more. User-created beatmaps 
+              are regularly added to keep the experience fresh.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAMEPLAY FEATURES -->
+      <div class="detail-section">
+        <h2>Core Gameplay Features</h2>
+        <div class="gameplay-features">
+          <div class="feature-item">
+            <div class="icon">⭕</div>
+            <p><strong>Click Circles</strong> - Tap at the perfect moment</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">〰️</div>
+            <p><strong>Follow Sliders</strong> - Trace the path smoothly</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🔄</div>
+            <p><strong>Spin Spinners</strong> - Rotate as fast as possible</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🎵</div>
+            <p><strong>Rhythm Timing</strong> - Perfect synchronization</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME STATS -->
+      <div class="detail-section">
+        <h2>Game Statistics</h2>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="number">600K+</div>
+            <div class="label">Active Players</div>
+          </div>
+          <div class="stat-box">
+            <div class="number">2K+</div>
+            <div class="label">Songs Available</div>
+          </div>
+          <div class="stat-box">
+            <div class="number">100M+</div>
+            <div class="label">Total Plays</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMUNITY -->
+      <div class="detail-section">
+        <h2>Community & Social</h2>
+        <div class="community-section">
+          <h3 style="color: #fff; margin: 0 0 1rem 0;">Join the osu! RoVer Community</h3>
+          <div class="community-grid">
+            <div class="community-item">
+              <div class="icon">🏆</div>
+              <div>
+                <h4>Global Leaderboards</h4>
+                <p>Compete with players worldwide and climb the rankings. Track your progress and see how you stack up against the best.</p>
+              </div>
+            </div>
+            <div class="community-item">
+              <div class="icon">🤝</div>
+              <div>
+                <h4>Multiplayer Modes</h4>
+                <p>Play with friends in co-op mode or face off in competitive matches. Create custom lobbies and invite your squad.</p>
+              </div>
+            </div>
+            <div class="community-item">
+              <div class="icon">📊</div>
+              <div>
+                <h4>Tournaments</h4>
+                <p>Participate in regular themed tournaments with prizes and exclusive rewards for top performers.</p>
+              </div>
+            </div>
+            <div class="community-item">
+              <div class="icon">💬</div>
+              <div>
+                <h4>Social Features</h4>
+                <p>Add friends, join groups, and chat with the community. Share your scores and celebrate achievements together.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHY PLAY -->
+      <div class="detail-section">
+        <h2>Why Play osu! RoVer?</h2>
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3>✨ Addictive Gameplay</h3>
+            <p>
+              Easy to learn, difficult to master. The perfect balance of accessibility and depth keeps players coming back for more. 
+              Each playthrough feels fresh and challenging.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>🎨 Beautiful Design</h3>
+            <p>
+              Stunning visual effects and smooth animations make every beat feel satisfying. 
+              The game combines rhythm gameplay with gorgeous Roblox graphics.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>🌟 Free to Play</h3>
+            <p>
+              Completely free on Roblox with optional cosmetics. No pay-to-win mechanics — success depends entirely on skill and practice.
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>🔄 Regular Updates</h3>
+            <p>
+              Developers constantly add new songs, features, and improvements. The game evolves based on community feedback and suggestions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h2>Ready to Experience the Rhythm?</h2>
+        <p>
+          Join thousands of players in the most exciting rhythm game on Roblox. 
+          Challenge yourself, compete globally, and become a rhythm master!
+        </p>
+        <a href="https://www.roblox.com/games/7216838953/osu-RoVer" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Launch osu! RoVer</a>
+      </div>
+
+      <!-- BACK LINK -->
+      <div style="text-align: center; padding: 2rem 0;">
+        <a href="index.html#games" style="color: var(--primary-light); font-weight: 600; transition: color var(--transition);" 
+           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--primary-light)'">← Back to Featured Games</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Vtnt<span>Gaming</span></a>
+          <p>Level up your gaming experience with the community that cares.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#games">Games</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="#">Discord Server</a></li>
+            <li><a href="#">Forums</a></li>
+            <li><a href="#">Tournaments</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 VtntGaming. All rights reserved.</p>
+        <p>Built with ❤️ and deployed on GitHub Pages.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
