@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 /* ================================
    ROOT & RESET
 ================================ */
@@ -27,7 +29,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -128,8 +130,28 @@ ul { list-style: none; }
   font-weight: 800;
   letter-spacing: -0.5px;
   color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
 }
-.nav-logo span { color: var(--primary-light); }
+.nav-logo .vtnt {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.3);
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.nav-logo .games {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.nav-logo:hover .vtnt {
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5);
+}
+.nav-logo:hover .games {
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
 
 .nav-links {
   display: flex;
@@ -209,11 +231,27 @@ ul { list-style: none; }
   color: #fff;
   margin-bottom: 1.2rem;
 }
-.hero-title span {
-  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+.hero-title .logo-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.hero-title .vtnt {
+  background: linear-gradient(135deg, #00ffff, #00dddd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
+  font-weight: 900;
+}
+.hero-title .games {
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.2));
 }
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.2rem);
@@ -496,7 +534,11 @@ ul { list-style: none; }
   gap: 2rem;
   margin-bottom: 2.5rem;
 }
-.footer-brand .nav-logo { display: inline-block; margin-bottom: 0.75rem; font-size: 1.3rem; }
+.footer-brand .nav-logo {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+}
 .footer-brand p { color: var(--text-muted); font-size: 0.9rem; max-width: 240px; }
 .footer-links h4 { color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem; }
 .footer-links li { margin-bottom: 0.5rem; }
