@@ -30,6 +30,12 @@
     .game-detail-content h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; color: #fff; }
     .game-detail-content .game-tag { margin-bottom: 1.5rem; font-size: 0.85rem; display: inline-block; }
     .game-detail-rating { font-size: 1.3rem; letter-spacing: 2px; color: #f59e0b; margin-bottom: 1.5rem; }
+
+    .rating-bars { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .rating-bar { width: 48px; height: 10px; background: rgba(137, 175, 250, 0.15); border-radius: 5px; overflow: hidden; position: relative; }
+    .rating-bar-fill { height: 100%; background: #89affa; border-radius: 5px; transition: width 0.6s ease; }
+    .rating-text { font-size: 1rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0; }
+    .rating-text .rating-pct { color: #89affa; font-size: 1.2rem; font-weight: 700; }
     
     .detail-header-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
     
@@ -160,7 +166,16 @@
     <div class="game-detail-content">
       <span class="game-tag">ROBLOX RHYTHM GAME</span>
       <h1>osu!RoVer</h1>
-      <div class="game-detail-rating">★★★★★</div>
+      <div class="game-detail-rating">
+        <div class="rating-bars">
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:100%"></div></div>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:100%"></div></div>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:100%"></div></div>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:19%"></div></div>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:0%"></div></div>
+        </div>
+        <div class="rating-text"><span class="rating-pct">64%</span> (3.4k Votes)</div>
+      </div>
       <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem;">
         Experience the ultimate rhythm game on Roblox. Click, follow, and spin to the beat with players from around the world!
       </p>
